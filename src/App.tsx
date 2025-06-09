@@ -11,6 +11,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Privacy from "./pages/Privacy";
 import NotFound from "./pages/NotFound";
+import AdSenseAd from "./components/AdSenseAd";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,7 @@ const App = () => (
           <meta property="og:type" content="website" />
           <link rel="canonical" href="https://infofyai.com" />
         </Helmet>
+        <AdSenseAd /> 
         <Toaster />
         <Sonner />
         <BrowserRouter>
