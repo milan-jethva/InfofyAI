@@ -17,6 +17,7 @@ interface ToolCardProps {
     rating: number;
     image: string;
     slug: string;
+    website: string;
   };
 }
 
@@ -24,23 +25,32 @@ const ToolCard = ({ tool }: ToolCardProps) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
 
+  const handleImageLoad = () => {
+    setImageLoaded(true);
+  };
+
+  const handleImageError = () => {
+    setImageError(true);
+    setImageLoaded(true);
+  };
+
   return (
     <Card className="h-full hover:shadow-lg transition-shadow duration-300">
       <div className="aspect-video relative overflow-hidden rounded-t-lg bg-gray-100">
-        {!imageLoaded && !imageError && (
-          <Skeleton className="w-full h-full" />
+        {!imageLoaded && (
+          <Skeleton className="w-full h-full absolute inset-0" />
         )}
-        {!imageError && (
+        {!imageError ? (
           <img 
-            src={`https://images.unsplash.com/${tool.image}?w=400&h=300&fit=crop`}
+            src={`https://images.unsplash.com/${tool.image}?w=400&h=300&fit=crop&auto=format&q=75`}
             alt={`${tool.name} AI tool interface`}
             className={`w-full h-full object-cover transition-opacity duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
             loading="lazy"
-            onLoad={() => setImageLoaded(true)}
-            onError={() => setImageError(true)}
+            onLoad={handleImageLoad}
+            onError={handleImageError}
+            decoding="async"
           />
-        )}
-        {imageError && (
+        ) : (
           <div className="w-full h-full bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center">
             <span className="text-gray-500 text-sm">Image unavailable</span>
           </div>
@@ -85,7 +95,7 @@ const ToolCard = ({ tool }: ToolCardProps) => {
           </Link>
         </Button>
         <Button variant="outline" size="icon" asChild>
-          <a href="#" target="_blank" rel="noopener noreferrer">
+          <a href={tool.website} target="_blank" rel="noopener noreferrer">
             <ExternalLink className="w-4 h-4" />
           </a>
         </Button>

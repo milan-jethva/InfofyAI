@@ -1,18 +1,28 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { ExternalLink, ArrowLeft, Star, Users, Calendar } from 'lucide-react';
+import { ExternalLink, ArrowLeft, Star } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { getToolBySlug } from '@/data/aiTools';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
 
 const ToolDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const tool = slug ? getToolBySlug(slug) : undefined;
+  const [imagesLoaded, setImagesLoaded] = useState<boolean[]>([]);
+
+  const handleImageLoad = (index: number) => {
+    setImagesLoaded(prev => {
+      const newState = [...prev];
+      newState[index] = true;
+      return newState;
+    });
+  };
 
   if (!tool) {
     return (
@@ -39,6 +49,7 @@ const ToolDetail = () => {
         <title>{tool.name} Review - Features, Pricing & Use Cases | infofyAI</title>
         <meta name="description" content={`Comprehensive review of ${tool.name}: ${tool.description} Learn about features, pricing, and real use cases.`} />
         <meta name="keywords" content={`${tool.name} review, ${tool.name} features, ${tool.name} pricing, AI ${tool.category.toLowerCase()}, ${tool.name} alternatives`} />
+        <link rel="preload" href={`https://images.unsplash.com/${tool.images[0]}?w=600&h=400&fit=crop&auto=format&q=75`} as="image" />
       </Helmet>
 
       <div className="min-h-screen bg-gray-50">
@@ -77,9 +88,11 @@ const ToolDetail = () => {
                   <p className="text-xl text-gray-700 leading-relaxed mb-6">
                     {tool.description}
                   </p>
-                  <p className="text-lg text-gray-600 leading-relaxed">
-                    {tool.fullDescription}
-                  </p>
+                  <div className="prose prose-lg max-w-none">
+                    <p className="text-gray-600 leading-relaxed">
+                      {tool.fullDescription}
+                    </p>
+                  </div>
                 </CardContent>
               </Card>
 
@@ -91,12 +104,17 @@ const ToolDetail = () => {
                 <CardContent>
                   <div className="grid md:grid-cols-2 gap-4">
                     {tool.images.map((image, index) => (
-                      <div key={index} className="aspect-video relative overflow-hidden rounded-lg">
+                      <div key={index} className="aspect-video relative overflow-hidden rounded-lg bg-gray-100">
+                        {!imagesLoaded[index] && (
+                          <Skeleton className="w-full h-full absolute inset-0" />
+                        )}
                         <img 
-                          src={`https://images.unsplash.com/${image}?w=600&h=400&fit=crop`}
+                          src={`https://images.unsplash.com/${image}?w=600&h=400&fit=crop&auto=format&q=75`}
                           alt={`${tool.name} screenshot ${index + 1}`}
-                          className="w-full h-full object-cover"
-                          loading="lazy"
+                          className={`w-full h-full object-cover transition-opacity duration-300 ${imagesLoaded[index] ? 'opacity-100' : 'opacity-0'}`}
+                          loading={index === 0 ? 'eager' : 'lazy'}
+                          onLoad={() => handleImageLoad(index)}
+                          decoding="async"
                         />
                       </div>
                     ))}
