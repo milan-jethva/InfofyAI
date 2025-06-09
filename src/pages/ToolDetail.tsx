@@ -36,8 +36,8 @@ const ToolDetail = () => {
   return (
     <>
       <Helmet>
-        <title>{tool.name} Review - Features, Pricing & Use Cases | AI Discovery Guide</title>
-        <meta name="description" content={`Comprehensive review of ${tool.name}: ${tool.description} Learn about features, pricing, pros and cons, and real use cases.`} />
+        <title>{tool.name} Review - Features, Pricing & Use Cases | infofyAI</title>
+        <meta name="description" content={`Comprehensive review of ${tool.name}: ${tool.description} Learn about features, pricing, and real use cases.`} />
         <meta name="keywords" content={`${tool.name} review, ${tool.name} features, ${tool.name} pricing, AI ${tool.category.toLowerCase()}, ${tool.name} alternatives`} />
       </Helmet>
 
@@ -53,155 +53,60 @@ const ToolDetail = () => {
             </Link>
           </Button>
 
-          {/* Hero Section */}
-          <div className="bg-white rounded-2xl shadow-sm overflow-hidden mb-8">
-            <div className="aspect-video relative">
-              <img 
-                src={`https://images.unsplash.com/${tool.image}`}
-                alt={`${tool.name} interface screenshot`}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-              <div className="absolute bottom-6 left-6 text-white">
-                <div className="flex items-center space-x-2 mb-2">
-                  <Badge variant="secondary">{tool.category}</Badge>
-                  <Badge variant="outline" className="text-white border-white">
-                    {tool.pricing}
-                  </Badge>
-                </div>
-                <h1 className="text-4xl font-bold mb-2">{tool.name}</h1>
-                <div className="flex items-center space-x-4">
-                  <div className="flex items-center">
-                    <Star className="w-5 h-5 text-yellow-400 mr-1" />
-                    <span className="font-semibold">{tool.rating}</span>
-                  </div>
-                  <div className="flex items-center">
-                    <Calendar className="w-4 h-4 mr-1" />
-                    <span>Founded {tool.founded}</span>
-                  </div>
-                  <div className="flex items-center">
-                    <Users className="w-4 h-4 mr-1" />
-                    <span>{tool.employees} employees</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
           <div className="grid lg:grid-cols-3 gap-8">
             {/* Main Content */}
             <div className="lg:col-span-2 space-y-8">
-              {/* Overview */}
+              {/* Title and Overview */}
               <Card>
                 <CardHeader>
-                  <CardTitle>Overview</CardTitle>
+                  <div className="flex items-start justify-between mb-4">
+                    <div>
+                      <h1 className="text-4xl font-bold text-gray-900 mb-2">{tool.name}</h1>
+                      <div className="flex items-center space-x-4 mb-4">
+                        <div className="flex items-center">
+                          <Star className="w-5 h-5 text-yellow-400 mr-1" />
+                          <span className="font-semibold">{tool.rating}</span>
+                        </div>
+                        <Badge variant="secondary">{tool.category}</Badge>
+                        <Badge variant="outline">{tool.pricing}</Badge>
+                      </div>
+                    </div>
+                  </div>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-lg text-gray-700 leading-relaxed">
+                  <p className="text-xl text-gray-700 leading-relaxed mb-6">
+                    {tool.description}
+                  </p>
+                  <p className="text-lg text-gray-600 leading-relaxed">
                     {tool.fullDescription}
                   </p>
                 </CardContent>
               </Card>
 
-              {/* Key Features */}
+              {/* Photos */}
               <Card>
                 <CardHeader>
-                  <CardTitle>Key Features</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <ul className="grid md:grid-cols-2 gap-3">
-                    {tool.features.map((feature, index) => (
-                      <li key={index} className="flex items-start">
-                        <span className="text-green-500 mr-2">✓</span>
-                        <span className="text-gray-700">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-
-              {/* Use Cases */}
-              <Card>
-                <CardHeader>
-                  <CardTitle>Popular Use Cases</CardTitle>
+                  <CardTitle>Screenshots</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="grid md:grid-cols-2 gap-4">
-                    {tool.useCases.map((useCase, index) => (
-                      <div key={index} className="bg-gray-50 p-4 rounded-lg">
-                        <p className="text-gray-700">{useCase}</p>
+                    {tool.images.map((image, index) => (
+                      <div key={index} className="aspect-video relative overflow-hidden rounded-lg">
+                        <img 
+                          src={`https://images.unsplash.com/${image}?w=600&h=400&fit=crop`}
+                          alt={`${tool.name} screenshot ${index + 1}`}
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                        />
                       </div>
                     ))}
                   </div>
                 </CardContent>
               </Card>
-
-              {/* Pros and Cons */}
-              <div className="grid md:grid-cols-2 gap-6">
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="text-green-600">Pros</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <ul className="space-y-2">
-                      {tool.pros.map((pro, index) => (
-                        <li key={index} className="flex items-start">
-                          <span className="text-green-500 mr-2">+</span>
-                          <span className="text-gray-700">{pro}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
-
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="text-red-600">Cons</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <ul className="space-y-2">
-                      {tool.cons.map((con, index) => (
-                        <li key={index} className="flex items-start">
-                          <span className="text-red-500 mr-2">-</span>
-                          <span className="text-gray-700">{con}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
-              </div>
             </div>
 
             {/* Sidebar */}
             <div className="space-y-6">
-              {/* Quick Stats */}
-              <Card>
-                <CardHeader>
-                  <CardTitle>Quick Stats</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Rating</span>
-                    <div className="flex items-center">
-                      <Star className="w-4 h-4 text-yellow-400 mr-1" />
-                      <span className="font-semibold">{tool.rating}/5</span>
-                    </div>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Pricing</span>
-                    <Badge variant="outline">{tool.pricing}</Badge>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Category</span>
-                    <Badge>{tool.category}</Badge>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Founded</span>
-                    <span className="font-semibold">{tool.founded}</span>
-                  </div>
-                </CardContent>
-              </Card>
-
               {/* CTA */}
               <Card className="bg-gradient-to-br from-blue-600 to-purple-600 text-white">
                 <CardContent className="p-6 text-center">
@@ -224,6 +129,31 @@ const ToolDetail = () => {
                       <ExternalLink className="w-4 h-4 ml-2" />
                     </a>
                   </Button>
+                </CardContent>
+              </Card>
+
+              {/* Company Info */}
+              <Card>
+                <CardHeader>
+                  <CardTitle>Company Info</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Founded</span>
+                    <span className="font-semibold">{tool.founded}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Employees</span>
+                    <span className="font-semibold">{tool.employees}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Category</span>
+                    <Badge>{tool.category}</Badge>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Pricing</span>
+                    <Badge variant="outline">{tool.pricing}</Badge>
+                  </div>
                 </CardContent>
               </Card>
 
