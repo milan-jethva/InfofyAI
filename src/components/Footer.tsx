@@ -16,7 +16,7 @@ const Footer = () => {
               Your comprehensive resource for discovering, comparing, and understanding the latest AI tools and applications. Stay ahead of the AI revolution with our curated collection of cutting-edge solutions.
             </p>
             <p className="text-gray-500 text-sm">
-              © 2024 infofyAI. All rights reserved.
+              © 2025 infofyAI. All rights reserved.
             </p>
           </div>
 

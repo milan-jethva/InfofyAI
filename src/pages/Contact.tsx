@@ -44,8 +44,8 @@ const Contact = () => {
                   For general questions, feedback, or information about our reviews.
                 </p>
                 <Button asChild>
-                  <a href="mailto:hello@aidiscoveryguide.com">
-                    hello@aidiscoveryguide.com
+                  <a href="mailto:createbusiness47@gmail.com">
+                    createbusiness47@gmail.com
                   </a>
                 </Button>
               </CardContent>
@@ -63,8 +63,8 @@ const Contact = () => {
                   Know of an AI tool we should review? Let us know!
                 </p>
                 <Button asChild>
-                  <a href="mailto:suggest@aidiscoveryguide.com">
-                    suggest@aidiscoveryguide.com
+                  <a href="mailto:createbusiness47@gmail.com">
+                    createbusiness47@gmail.com
                   </a>
                 </Button>
               </CardContent>
@@ -82,8 +82,8 @@ const Contact = () => {
                   Interested in collaborating or partnership opportunities?
                 </p>
                 <Button asChild>
-                  <a href="mailto:partnerships@aidiscoveryguide.com">
-                    partnerships@aidiscoveryguide.com
+                  <a href="mailto:createbusiness47@gmail.com">
+                    createbusiness47@gmail.com
                   </a>
                 </Button>
               </CardContent>
@@ -101,8 +101,8 @@ const Contact = () => {
                   Media inquiries, interviews, or press-related questions.
                 </p>
                 <Button asChild>
-                  <a href="mailto:press@aidiscoveryguide.com">
-                    press@aidiscoveryguide.com
+                  <a href="mailto:createbusiness47@gmail.com">
+                    createbusiness47@gmail.com
                   </a>
                 </Button>
               </CardContent>
