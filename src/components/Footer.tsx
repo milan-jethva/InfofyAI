@@ -10,16 +10,13 @@ const Footer = () => {
           {/* Company Info */}
           <div className="col-span-2">
             <div className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">AI</span>
-              </div>
-              <span className="text-xl font-bold">AI Discovery Guide</span>
+              <span className="text-xl font-bold">infofyAI</span>
             </div>
             <p className="text-gray-400 mb-4 max-w-md">
               Your comprehensive resource for discovering, comparing, and understanding the latest AI tools and applications. Stay ahead of the AI revolution with our curated collection of cutting-edge solutions.
             </p>
             <p className="text-gray-500 text-sm">
-              © 2024 AI Discovery Guide. All rights reserved.
+              © 2024 infofyAI. All rights reserved.
             </p>
           </div>
 

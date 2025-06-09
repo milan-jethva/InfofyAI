@@ -19,14 +19,14 @@ const App = () => (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Helmet>
-          <title>AI Discovery Guide - Find the Best AI Tools & Apps | Smart AI Solutions</title>
-          <meta name="description" content="Discover the latest and most powerful AI tools and applications. From ChatGPT to Midjourney, find comprehensive reviews, use cases, and comparisons of trending AI solutions." />
-          <meta name="keywords" content="AI tools, artificial intelligence, ChatGPT, Midjourney, Copy.ai, AI applications, machine learning, AI software reviews" />
+          <title>infofyAI - Find the Best AI Tools & Apps | Smart AI Solutions</title>
+          <meta name="description" content="Discover the latest and most powerful AI tools and applications with infofyAI. From ChatGPT to Midjourney, find comprehensive reviews, use cases, and comparisons of trending AI solutions." />
+          <meta name="keywords" content="AI tools, artificial intelligence, ChatGPT, Midjourney, Copy.ai, AI applications, machine learning, AI software reviews, infofyAI" />
           <meta name="robots" content="index, follow" />
-          <meta property="og:title" content="AI Discovery Guide - Find the Best AI Tools & Apps" />
-          <meta property="og:description" content="Discover comprehensive reviews and comparisons of the latest AI tools and applications." />
+          <meta property="og:title" content="infofyAI - Find the Best AI Tools & Apps" />
+          <meta property="og:description" content="Discover comprehensive reviews and comparisons of the latest AI tools and applications with infofyAI." />
           <meta property="og:type" content="website" />
-          <link rel="canonical" href="https://ai-discovery-guide.com" />
+          <link rel="canonical" href="https://infofyai.com" />
         </Helmet>
         <Toaster />
         <Sonner />

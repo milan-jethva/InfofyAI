@@ -1,10 +1,11 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ExternalLink } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
 
 interface ToolCardProps {
   tool: {
@@ -20,14 +21,30 @@ interface ToolCardProps {
 }
 
 const ToolCard = ({ tool }: ToolCardProps) => {
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [imageError, setImageError] = useState(false);
+
   return (
     <Card className="h-full hover:shadow-lg transition-shadow duration-300">
-      <div className="aspect-video relative overflow-hidden rounded-t-lg">
-        <img 
-          src={`https://images.unsplash.com/${tool.image}`}
-          alt={`${tool.name} AI tool interface`}
-          className="w-full h-full object-cover"
-        />
+      <div className="aspect-video relative overflow-hidden rounded-t-lg bg-gray-100">
+        {!imageLoaded && !imageError && (
+          <Skeleton className="w-full h-full" />
+        )}
+        {!imageError && (
+          <img 
+            src={`https://images.unsplash.com/${tool.image}?w=400&h=300&fit=crop`}
+            alt={`${tool.name} AI tool interface`}
+            className={`w-full h-full object-cover transition-opacity duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+            loading="lazy"
+            onLoad={() => setImageLoaded(true)}
+            onError={() => setImageError(true)}
+          />
+        )}
+        {imageError && (
+          <div className="w-full h-full bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center">
+            <span className="text-gray-500 text-sm">Image unavailable</span>
+          </div>
+        )}
         <div className="absolute top-4 right-4">
           <Badge variant="secondary">{tool.category}</Badge>
         </div>
