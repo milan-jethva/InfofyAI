@@ -31,10 +31,10 @@ const App = () => (
         </Helmet>
 
         
-        <AdSenseAd /> 
+        
         <Toaster />
         <Sonner />
-        <AdComponent/>
+        
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
